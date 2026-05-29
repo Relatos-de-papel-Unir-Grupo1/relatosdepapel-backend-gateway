@@ -17,6 +17,9 @@ public class RequestDecoratorFactory {
         return switch (gatewayRequest.getTargetMethod().name().toUpperCase()) {
             case "GET" -> new GetRequestDecorator(gatewayRequest);
             case "POST" -> new PostRequestDecorator(gatewayRequest, objectMapper);
+            case "PUT" -> new PutRequestDecorator(gatewayRequest, objectMapper);
+            case "PATCH" -> new PatchRequestDecorator(gatewayRequest, objectMapper);
+            case "DELETE" -> new DeleteRequestDecorator(gatewayRequest);
             default -> throw new IllegalArgumentException("Unsupported HTTP method");
         };
     }
